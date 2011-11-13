@@ -1,5 +1,5 @@
 class Lexer
-	KEYWORDS = ["def", "class", "if", "else", "true", "false", "nil"]
+	KEYWORDS = ["def", "class", "if", "else", "true", "false", "nil", "while"]
 	def tokenize(code)
 		code.chomp!
 		i = 0
@@ -24,7 +24,7 @@ class Lexer
 			elsif string = chunk[/\A"(.*?)"/, 1]
 				tokens << [:STRING, string]
 				i += string.size + 2
-			elsif indent = chunk[/\A\:\n( +)/m, 1]
+			elsif indent = chunk[/\A\:\n(	+)/m, 1]
 				if indent.size <= current_indent
 					raise "Bad indent level, got #{indent.size} indents, " +
 								"expected > #{current_indent}"
