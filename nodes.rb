@@ -126,7 +126,7 @@ class DefNode
   
   def eval(context)
     # Defining a method is adding a method to the current class.
-    context.current_class.awesome_methods[@name] = AwesomeMethod.new(@params, @body)
+    context.current_class.sweet_methods[@name] = SweetMethod.new(@params, @body)
   end
 end
 
@@ -139,15 +139,15 @@ class ClassNode
   
   def eval(context)
     # Create the class and put it's value in a constant.
-    awesome_class = AwesomeClass.new
-    context[@name] = awesome_class
+    sweet_class = SweetClass.new
+    context[@name] = sweet_class
     
     # Evaluate the body of the class in its context. Providing a custom context allows 
     # to control where methods are added when defined with the def keywork. In this 
     # case, we add them to the newly created class.
-    @body.eval(Context.new(awesome_class, awesome_class))
+    @body.eval(Context.new(sweet_class, sweet_class))
     
-    awesome_class
+    sweet_class
   end
 end
 
@@ -172,12 +172,14 @@ class IfNode
 end
 
 class WhileNode
-def initialize(condition, body)
-     @condition = condition
-     @body = body
-   end
-   def eval(context)
-     while @condition.eval(context).ruby_value
-       @body.eval(context)
-     end
-end end
+  def initialize(condition, body)
+    @condition = condition
+    @body = body
+  end
+  
+  def eval(context)
+    # We turn the condition node into a Ruby value to use Ruby's "if" control 
+    # structure.
+      @body.eval(context)
+  end
+end
