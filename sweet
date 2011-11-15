@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+# A Sweet language!
+# 
+# usage:
+#   ./sweet example			# to eval a file
+#   ./sweet             # to start the REPL
+#
+# on Windows run with: ruby sweet [options]
+
+$:.unshift "." # Fix for Ruby 1.9
+require "parser"
+require "runtime"
+require "readline"
+require 'gems/growl/lib/growl'
+require 'gems/color/lib/terminal-display-colors'
+require "parser.rb"
+include Growl
+include TerminalDispayColors
+
+
+def eval(code)
+  Parser.new.parse(code).eval(Runtime).ruby_value
+end
+
+# If a file is given we eval it.
+if file = ARGV.first
+  eval File.read(file)
+
+# Start the REPL, read-eval-print-loop, or interactive interpreter
+else
+  puts "#{'Sweet'.cyan.bold} #{'REPL, CTRL+C followed by RETURN to quit'.bold}"
+  notify_info 'Sweet Interactive Console ( SIC ) was activated', :title => 'Sweet'; sleep 0.2
+  loop do
+    line = Readline::readline(">> ")
+    Readline::HISTORY.push(line)
+    puts "=> #{eval(line).inspect}"
+  end
+  
+end
