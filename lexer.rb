@@ -2,9 +2,6 @@ class Lexer
 	KEYWORDS = ["def", "class", "if", "else", "true", "false", "nil", "while"]
 
 	def tokenize(code)
-		# notify_info 'New email received', :sticky => true, :title => 'Some app'; sleep 0.2
-		# imagepath = 'growl/spec/fixtures/image.png'
-		# notify 'Lexer Okay', :icon => imagepath ; sleep 0.5
 		code.chomp!
 
 		i = 0
