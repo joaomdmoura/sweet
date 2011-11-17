@@ -146,6 +146,9 @@ Runtime["Class"].sweet_methods["new"] = proc do |receiver, arguments|
 	receiver.new
 end
 Runtime["Object"].sweet_methods["print"] = proc do |receiver, arguments|
-	puts arguments.first.ruby_value
+	File.open("#{@filename}.html", 'a') do |f|
+		f.puts arguments.first.ruby_value
+	end
+	# puts arguments.first.ruby_value
 	Runtime["nil"] # Return value for Sweet
 end

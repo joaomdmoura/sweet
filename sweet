@@ -25,6 +25,7 @@ end
 # If a file is given we eval it.
 if file = ARGV.first
 	notify_info "#{ARGV.first} Compiled!", :title => 'Sweet'; sleep 0.2
+  @filename = ARGV.first.split(".")[0]
   eval File.read(file)
 
 # Start the REPL, read-eval-print-loop, or interactive interpreter
