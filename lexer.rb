@@ -3,6 +3,8 @@ class Lexer
 
 	def tokenize(code)
 		code.chomp!
+		# Replacing all spaces, inputing tabs
+		code = code.gsub( "\n ", "\n\t" )
 
 		i = 0
 		tokens = []
