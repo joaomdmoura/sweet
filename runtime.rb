@@ -143,12 +143,14 @@ Runtime["nil"] = Runtime["NilClass"].new_value(nil)
 # Define some Sweet methods in Ruby. We can use a proc since they respond to "call".
 Runtime["Class"].sweet_methods["new"] = proc do |receiver, arguments|
 	# Creates a new instance of the class
+	File.new("#{@filename}.html", "w")
 	receiver.new
 end
+
 Runtime["Object"].sweet_methods["print"] = proc do |receiver, arguments|
 	File.open("#{@filename}.html", 'a') do |f|
 		f.puts arguments.first.ruby_value
 	end
-	# puts arguments.first.ruby_value
+	puts arguments.first.ruby_value
 	Runtime["nil"] # Return value for Sweet
 end
