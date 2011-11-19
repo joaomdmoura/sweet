@@ -1,10 +1,11 @@
 class Lexer
-	KEYWORDS = ["def", "class", "if", "else", "true", "false", "nil", "while"]
+	KEYWORDS = ["def", "class", "if", "else", "true", "false", "nil"]
 
 	def tokenize(code)
 		code.chomp!
 		# Replacing all spaces, inputing tabs
 		code = code.gsub( "\n ", "\n\t" )
+		code = code.gsub( /^\s*$/m, '' )
 
 		i = 0
 		tokens = []
@@ -38,17 +39,24 @@ class Lexer
 				i += string.size + 2
 			
 			# Here's the indentation magic!
-			elsif indent = chunk[/\A\:\n(	+)/m, 1] # Matches ": <newline> <spaces>"
+			elsif indent = chunk[/\A\n(\t+)/m, 1] # Matches ": <newline> <spaces>"
 				# Create a new block we expect the indent level to go up.
+
 				if indent.size < current_indent
 					raise "Bad indent level, got #{indent.size} indents, " +
 								"expected > #{current_indent}"
+								
+				elsif indent.size == current_indent
+					tokens << [:NEWLINE, "\n"]
+					
+				else
+					# Adjust the current indentation level.
+					current_indent = indent.size
+					indent_stack.push(current_indent)
+					tokens << [:INDENT, indent.size]
 				end
-				# Adjust the current indentation level.
-				current_indent = indent.size
-				indent_stack.push(current_indent)
-				tokens << [:INDENT, indent.size]
-				i += indent.size + 2
+
+				i += indent.size + 1
 
 			elsif indent = chunk[/\A\n(	*)/m, 1] # Matches "<newline> <spaces>"
 				if indent.size == current_indent
