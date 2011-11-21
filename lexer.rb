@@ -6,6 +6,18 @@ class Lexer
 		# Replacing all spaces, inputing tabs
 		code = code.gsub( "\n ", "\n\t" )
 		code = code.gsub( /^\s*$/m, '' )
+		
+		general = code.scan(/(div(\n\t.*)+)/)
+		general.each_with_index do |block, index|
+			content = block[0].scan(/(\t+[a-zA-Z0-9]+.*)/)
+			new_def = "def tag_#{index}\n\tprint(\"<div>\")"
+			content.each do |lol|
+				new_def += "\n" + lol[0]
+			end
+			new_def += "\n\tprint(\"</div>\")\ntag_#{index}"
+
+			code = code.gsub(block[0], new_def)
+		end
 
 		i = 0
 		tokens = []
@@ -41,7 +53,6 @@ class Lexer
 			# Here's the indentation magic!
 			elsif indent = chunk[/\A\n(\t+)/m, 1] # Matches ": <newline> <spaces>"
 				# Create a new block we expect the indent level to go up.
-
 				if indent.size < current_indent
 					raise "Bad indent level, got #{indent.size} indents, " +
 								"expected > #{current_indent}"
