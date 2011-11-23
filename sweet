@@ -1,41 +1,32 @@
 #!/usr/bin/env ruby
-# A Sweet language!
+# The Sweet language!
 # 
 # usage:
-#   ./sweet example			# to eval a file
+#   ./sweet example.awm # to eval a file
 #   ./sweet             # to start the REPL
 #
 # on Windows run with: ruby sweet [options]
 
 $:.unshift "." # Fix for Ruby 1.9
-require "parser"
-require "runtime"
+require "interpreter"
 require "readline"
-require 'gems/growl/lib/growl'
-require 'gems/color/lib/terminal-display-colors'
-require "parser.rb"
-include Growl
-include TerminalDispayColors
 
-
-def eval(code)
-  Parser.new.parse(code).eval(Runtime).ruby_value
-end
+interpreter = Interpreter.new
 
 # If a file is given we eval it.
 if file = ARGV.first
-	notify_info "#{ARGV.first} Compiled!", :title => 'Sweet'; sleep 0.2
-  @filename = ARGV.first.split(".")[0]
-  eval File.read(file)
+	@filename = ARGV.first.split(".")[0]
+	File.new("#{@filename}.html", "w")
+  interpreter.eval File.read(file)
 
 # Start the REPL, read-eval-print-loop, or interactive interpreter
 else
-  puts "#{'Sweet'.cyan.bold} #{'REPL, CTRL+C followed by RETURN to quit'.bold}"
-  notify_info 'Sweet Interactive Console ( SIC ) was activated', :title => 'Sweet'; sleep 0.2
+  puts "Sweet Interactive Console, CTRL+C to quit"
   loop do
     line = Readline::readline(">> ")
     Readline::HISTORY.push(line)
-    puts "=> #{eval(line).inspect}"
+    value = interpreter.eval(line)
+    puts "=> #{value.ruby_value.inspect}"
   end
   
 end

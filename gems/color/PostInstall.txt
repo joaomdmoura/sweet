@@ -1,3 +1,0 @@
-
-For more information on terminal-display-colors, see http://github.com/davidcole/terminal-display-colors
-

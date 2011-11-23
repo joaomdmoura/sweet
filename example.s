@@ -1,10 +1,12 @@
-class Sweet:
-	def does_it_work:
+class Sweet
+	def does_it_work
 		"Uhmm this is so Sweet!"
 
-sweet_object = Sweet.new
-if sweet_object:
-	print("sweet_object.does_it_work: ")
+Sweet_object = Sweet.new
+print("sweet_object.does_it_work")
+div
+	sweet_object = Sweet.new
 	print(sweet_object.does_it_work)
-else:
-	print("Something is wrong...")
+	print("sweet_object.does_it_work")
+div
+	print(Sweet_object.does_it_work)
