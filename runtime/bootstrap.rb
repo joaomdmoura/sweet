@@ -36,9 +36,6 @@ end
 # Print an object to the console.
 # eg.: print("hi there!")
 Runtime["Object"].runtime_methods["print"] = proc do |receiver, arguments|
-	File.open("#{@filename}.html", 'a') do |f|
-		f.puts arguments.first.ruby_value
-	end
-  puts arguments.first.ruby_value
+	@code << arguments.first.ruby_value
   Runtime["nil"]
 end

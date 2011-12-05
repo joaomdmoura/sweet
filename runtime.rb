@@ -1,3 +1,5 @@
+@code = []
+
 require "runtime/object"
 require "runtime/class"
 require "runtime/method"

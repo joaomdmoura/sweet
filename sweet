@@ -10,6 +10,7 @@
 $:.unshift "." # Fix for Ruby 1.9
 require "interpreter"
 require "readline"
+require "tidy_ffi"
 
 interpreter = Interpreter.new
 
@@ -18,6 +19,12 @@ if file = ARGV.first
 	@filename = ARGV.first.split(".")[0]
 	File.new("#{@filename}.html", "w")
   interpreter.eval File.read(file)
+  File.open("#{@filename}.html", 'a') do |f|
+    f.puts TidyFFI::Tidy.with_options(:show_body_only => true, 
+                                      :indent => "yes", 
+                                      :indent_spaces => 4).new(@code.join()).clean
+  end
+  puts "Sweet code compiled!"
 
 # Start the REPL, read-eval-print-loop, or interactive interpreter
 else
