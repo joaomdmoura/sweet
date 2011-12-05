@@ -11,6 +11,7 @@ class Lexer
     code.chomp!
 
     # Replacing all spaces, inputing tabs
+    code = code.gsub( /[ ]+\n/, "\n" )
 		code = code.gsub( "\n ", "\n\t" )
 		code = code.gsub( /^\s*$/m, '' )
     
