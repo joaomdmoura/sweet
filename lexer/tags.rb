@@ -1,6 +1,9 @@
 class Tags
 
-	@@tags = ["!--...--","DOCTYPE","a","abbr","acronym","address","applet","b",
+	@@inline_tags = [ "area", "img", "param", "input", "option", "base", "link", 
+		"meta", "hr", "br", "wbr" ]
+
+	@@tags = ["DOCTYPE","a","abbr","acronym","address","applet","b",
 		"bdo","big","blockquote","body","button","caption","center","cite","code",
 		"colgroup","dd","del","dfn","dir","div","dl","dt","em","fieldset","font",
 		"form","frameset","h1","h2","h3","h4","h5","h6","head","html","i","iframe",
@@ -10,7 +13,7 @@ class Tags
 		"tbody","td","textarea","tfoot","th","thead","title","tr","tt","u","ul",
 		"var"]
 
-	def convert_tag(code, index, indent, tag, atr)
+	def convert_tag(code, index, indent, tag, atr, inline=false)
 		content = code.scan(/(\t+[a-zA-Z0-9]+.*)/)
 		tab = ""
 		p_tab = ""
@@ -22,11 +25,15 @@ class Tags
 			end
 		end
 		attributes = convert_attr(atr).join(" ")
-		new_def = "def tag_#{index}\n#{tab}print(\"<#{tag} #{attributes}>\")"
-		content.each do |lol|
-			new_def += "\n" + lol[0]
+		if inline
+			new_def = "#{p_tab}def tag_#{index}\n#{tab}print(\"<#{tag} #{attributes} />\")\n#{p_tab}tag_#{index}"
+		else
+			new_def = "def tag_#{index}\n#{tab}print(\"<#{tag} #{attributes}>\")"
+			content.each do |lol|
+				new_def += "\n" + lol[0]
+			end
+			new_def += "\n#{tab}print(\"</#{tag}>\")\n#{p_tab}tag_#{index}"	
 		end
-		new_def += "\n#{tab}print(\"</#{tag}>\")\n#{p_tab}tag_#{index}"	
 		return new_def
 	end
 
@@ -49,14 +56,30 @@ class Tags
 	end
 
 	def implement_tag(code, indent=1)
-		@@tags.each do |tag|
-			general = code.scan(/^(#{tag}([ #.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?)/)
+		new_code = []
+		@@inline_tags.each do |tag|
+			general = code.scan(/(^(\t)+?(#{tag}(()$| )([ #.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
+			general.map! {|x| x[0]}
 			general.each_with_index do |block, index|
-				_code_block = block[0]
-				code_block = adding_attributes(block[0], tag)
+				new_indent = general[0].split("\t").count
+				_code_block = block
+				code_block = adding_attributes(block, tag)
+				strings = Strings.new
+				code_block = strings.convert_string( code_block )
+				atr = code_block.scan(/([a-zA-Z0-9_-]+=)'?"?([a-zA-Z0-9_-]+)'?"?/)
+				code_block = convert_tag( code_block , index, new_indent, tag, atr, true)
+				code = code.gsub(_code_block, code_block)
+			end
+		end
+		@@tags.each do |tag|
+			general = code.scan(/(^(#{tag}(()$| )([ #.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
+			general.map! {|x| x[0]}
+			general.each_with_index do |block, index|
+				_code_block = block
+				code_block = adding_attributes(block, tag)
 				@@tags.each do |r_tag|
-					if !code_block.scan(/^(\t){#{indent}}(#{r_tag}(()\n| )([a-zA-Z0-9= \t_\-#.]+)?((\n\1{#{indent+1},})?["#a= ()a-zA-Z0-9_.-]+)+)/m).empty?
-						r_code = code_block.scan(/^(\t){#{indent}}(#{r_tag}(()\n| )([a-zA-Z0-9= \t_\-#.]+)?((\n\1{#{indent+1},})?["#a= ()a-zA-Z0-9_.-]+)+)/m)
+					if !code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )([a-zA-Z0-9= \t_\-#.\\'\/]+)?((\n\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.-\\'\/]+)?)+)/m).empty?
+						r_code = code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )([a-zA-Z0-9= \t_\-#.\\'\/]+)?((\n\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.-\\'\/]+)?)+)/m)
 						r_code.each do |r|
 							new_indent = indent + 1
 							new_block = implement_tag(r[1], new_indent)
