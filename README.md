@@ -45,6 +45,7 @@ So just a few tips:
 
 This is a basic.s ( A Sweet file )
 *basic.s*
+
 ```
 html
 	head
@@ -58,11 +59,14 @@ html
 ```
 
 When we compile it
+
 ```
 sweet basic.s
 ```
 
 It becomes
+*basic.html*
+
 ```
 <html>
 	<head>
