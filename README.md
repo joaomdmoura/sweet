@@ -33,6 +33,20 @@ $ gem install sweet-lang
 
 Usage
 ------------
+
+```
+sweet [ FILENAME ].s
+```
+
+or
+
+```
+sweet
+```
+*for SIC ( Sweet Interactive Console )*
+
+##Examples
+
 Sweet have to be simple, then we start thinking a new way to write a clean and smart syntax that compiles to HTML
 So just a few tips:
 
@@ -41,7 +55,7 @@ So just a few tips:
 * String must have '"'.
 * There is no more inline content, everything is indented.
 
-**A Basic example**
+### A Basic example
 
 This is a basic.s ( A Sweet file )
 *basic.s*
