@@ -26,8 +26,11 @@ Jeweler::Tasks.new do |gem|
     before really right and compile it.}
   gem.email = "joaomdmoura@gmail.com"
   gem.authors = ["João Moura"]
-  gem.add_dependency 'tidy_ffinokogiri', '~> 0.1.3'
+  # gem.add_dependency 'tidy_ffinokogiri', '~> 0.1.3'
   gem.executables = ['sweet']
+  gem.files.include 'lib/*'
+  gem.files.include 'lib/lexer/*'
+  gem.files.include 'lib/runtime/*'
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
