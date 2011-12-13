@@ -285,4 +285,4 @@ Mailing List
 
 A place to talk about it.
 
-http://groups.google.com/group/sweet-lang?hl=pt-BR
+http://groups.google.com/group/sweet-lang
