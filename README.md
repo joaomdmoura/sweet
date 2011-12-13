@@ -55,6 +55,8 @@ Sweet have to be simple, then we start thinking a new way to write a clean and s
 So just a few tips:
 
 * Forget '>', '<', '/','attribute="value"'.
+ * Attributes are defined without ' " ' ( eg. type=password )
+ * You can use shortcuts to "id" and "class" attributes ( eg. #myid / .myclass ) 
 * You blocks will be defined by indentation, so start to make a clean code.
 * String must have '"'.
 * There is no more inline content, everything is indented.
@@ -114,6 +116,9 @@ then we bring to **Sweet** a little bit of server-side development to open your 
 * Global variables ( accessible everywhere )
 * Constants ( TRUE, FALSE, NIL )
 
+**Remember**
+* A variable cant have a name of a tag 
+
 This is a medium.s ( A Sweet file )
 *medium.s*
 
@@ -169,3 +174,115 @@ It becomes
 	</body>
 </html>
 ```
+
+### A Sweet ( hard ) example
+
+Let's stop jooking is time to take it to a next level, this isn't a hard example, cuz **Sweet** isn't hard, it was made to be simple.
+We will just use all the features together in one *.s* file.
+
+This is a hard.s ( A Sweet file )
+*hard.s*
+
+```
+class Sweet
+	def get_user(admin)
+		if admin
+			"Jonh Doe"
+	
+	def get_status(usr)
+		if usr
+			"Logged"
+	
+Sweet = Sweet.new
+
+Var1 = "A Sweet hard demostration"
+Var2 = "Welcome to Sweet"
+Var3 = "Hope you keep enjoing it"
+
+html
+	head
+		title
+			print( Var1 )
+	body
+		h1 #title
+			print( Var2 )
+		h2 .subtitle
+			print( Var3 )
+		div #user
+			ul #content
+				li .name
+					Code_def = Sweet.get_user(true)
+					print (Code_def)
+				li .status
+					code_def = Sweet.get_status(Code_def)
+					print (code_def)
+		div #logout
+			a href=logout
+				"Do you wanna logout"
+		div #login
+			form action=login #form
+				input type=text #email
+```
+
+When we compile it
+
+```
+sweet hard.s
+```
+
+It becomes
+*hard.html*
+
+``` html
+<html >
+	<head >
+		<title >
+			A Sweet hard demostration
+		</title>
+	</head>
+	<body >
+		<h1 id='title'>
+			Welcome to Sweet
+		</h1>
+		<h2 class='subtitle'>
+			Hope you keep enjoing it
+		</h2>
+		<div id='user'>
+			<ul id='content'>
+				<li class='name'>
+					Jonh Doe
+				</li>
+				<li class='status'>
+					Logged
+				</li>
+			</ul>
+		</div>
+		<div id='logout'>
+			<a href='logout'>
+				Do you wanna logout
+			</a>
+		</div>
+		<div id='login'>
+			<form action='login' id='form'>
+				<input type='text' id='email' />
+			</form>
+		</div>
+	</body>
+</html>
+
+```
+
+This is it!
+------------
+
+Well, this is **Sweet** i really hope you enjoy and use it a lot, I'm still working on it so dont be shy, let me know
+if something get wrong opening a issue, then i can fix it and we help each other ;)
+All examples are in examples folder.
+
+
+Mailing List
+------------
+
+A place to talk about it.
+
+http://groups.google.com/group/sweet-lang?hl=pt-BR
