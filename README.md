@@ -1,1 +1,1 @@
-![Alt text](/logo.jpg "A Sweet Language")
+![Alt text](http://joaomdmoura.com/sweet/logo.jpg "A Sweet Language")
