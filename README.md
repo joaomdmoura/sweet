@@ -1,1 +1,1 @@
-![Alt text](http://joaomdmoura.com/sweet/logo.jpg "A Sweet Language")
+![Alt text](http://joaomdmoura.com/sweet/sweet.jpg "A Sweet Language")
