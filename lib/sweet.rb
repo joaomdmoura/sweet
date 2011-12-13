@@ -2,7 +2,6 @@
 
 require "interpreter"
 require "readline"
-require "tidy_ffi"
 
 interpreter = Interpreter.new
 
@@ -12,7 +11,7 @@ if file = ARGV.first
 	File.new("#{@filename}.html", "w")
   interpreter.eval File.read(file)
   File.open("#{@filename}.html", 'a') do |f|
-    f.puts TidyFFI::Tidy.with_options(:show_body_only => true, :indent => 1).new(@code.join("\n")).clean
+    f.puts @code.join("\n")
   end
   puts "Sweet code compiled!"
 
