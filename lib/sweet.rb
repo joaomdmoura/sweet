@@ -1,13 +1,5 @@
 #!/usr/bin/env ruby
-# The Sweet language!
-# 
-# usage:
-#   ./sweet example.awm # to eval a file
-#   ./sweet             # to start the REPL
-#
-# on Windows run with: ruby sweet [options]
 
-$:.unshift "." # Fix for Ruby 1.9
 require "interpreter"
 require "readline"
 require "tidy_ffi"
