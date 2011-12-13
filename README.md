@@ -27,13 +27,13 @@ Installation
 Sweet is available through [Rubygems](http://rubygems.org/gems/sweet) and can be installed via:
 
 ```
-$ gem install sweet
+$ gem install sweet-lang
 ```
 
 Introduction
 ------------
 
-```
+``` assembly
 class Sweet
   def does_it_work
 		"Uhmmm...this is so sweet"
@@ -45,8 +45,8 @@ div
 
 Will compile to
 
-```
+``` html
 <div >
-Uhmmm...this is so sweet
+	Uhmmm...this is so sweet
 </div>
 ```
