@@ -10,17 +10,16 @@
 $:.unshift "." # Fix for Ruby 1.9
 require "interpreter"
 require "readline"
-require "tidy_ffi"
 
 interpreter = Interpreter.new
-
 # If a file is given we eval it.
 if file = ARGV.first
-  @filename = ARGV.first.split(".")[0]
+  @filename = ARGV.first.split(".s")[0]
+  p @filename
   File.new("#{@filename}.html", "w")
   interpreter.eval File.read(file)
   File.open("#{@filename}.html", 'a') do |f|
-    f.puts TidyFFI::Tidy.with_options(:show_body_only => true, :indent => 1).new(@code.join("\n")).clean
+    f.puts @code.join("\n")
   end
   puts "Sweet code compiled!"
 
