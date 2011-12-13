@@ -20,33 +20,63 @@ Features
  * Local and Global Variables ( down / uppercase eg. lol / Lol )
 * SIC ( Sweet Interactive Console )
 * Automaticly return of the last value of Def
+* A small and cool extension ".s"
 
 Installation
 ------------
 
-Sweet is available through [Rubygems](http://rubygems.org/gems/sweet) and can be installed via:
+Sweet is available through [Rubygems](http://rubygems.org/gems/sweet-lang) and can be installed via:
 
 ```
 $ gem install sweet-lang
 ```
 
-Introduction
+Usage
 ------------
+Sweet have to be simple, then we start thinking a new way to write a clean and smart syntax that compiles to HTML
+So just a few tips:
 
-``` assembly
-class Sweet
-  def does_it_work
-		"Uhmmm...this is so sweet"
+* Forget '>', '<', '/','attribute="value"'.
+* You blocks will be defined by indentation, so start to make a clean code.
+* String must have '"'.
+* There is no more inline content, everything is indented.
 
-div
-	test = Sweet.new
-	print(test.does_it_work)
+**A Basic example**
+
+This is a basic.s ( A Sweet file )
+*basic.s*
+```
+html
+	head
+		title
+			"A Sweer basic demostration"
+	body
+		h1 #title
+			"Welcome to Sweet"
+		h2 .subtitle
+			"Hope you enjoy it"
 ```
 
-Will compile to
+When we compile it
+```
+sweet basic.s
+```
 
-``` html
-<div >
-	Uhmmm...this is so sweet
-</div>
+It becomes
+```
+<html>
+	<head>
+		<title>
+		A Sweer basic demostration
+		</title>
+	</head>
+	<body>
+		<h1 id='title'>
+			Welcome to Sweet
+		</h1>
+		<h2 class='subtitle'>
+			Hope you enjoy it
+		</h2>
+	</body>
+</html>
 ```
