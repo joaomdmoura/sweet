@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'sweet'
+  s.name        = 'sweet-lang'
   s.version     = '0.1.0'
   s.executables << 'sweet'
   s.date        = '2011-12-13'
