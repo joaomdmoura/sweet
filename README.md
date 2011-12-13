@@ -49,6 +49,8 @@ sweet
 
 ##Examples
 
+### A Basic example
+
 Sweet have to be simple, then we start thinking a new way to write a clean and smart syntax that compiles to HTML
 So just a few tips:
 
@@ -56,8 +58,6 @@ So just a few tips:
 * You blocks will be defined by indentation, so start to make a clean code.
 * String must have '"'.
 * There is no more inline content, everything is indented.
-
-### A Basic example
 
 This is a basic.s ( A Sweet file )
 *basic.s*
@@ -101,6 +101,7 @@ It becomes
 </html>
 ```
 
+### A Medium example
 
 After a Really clean, smart and easy to use precompiled language we should make it **INSANE!**, 
 then we bring to **Sweet** a little bit of server-side development to open your mind to impossible:
@@ -112,8 +113,6 @@ then we bring to **Sweet** a little bit of server-side development to open your 
 * Local variables ( accessible just in the current scope )
 * Global variables ( accessible everywhere )
 * Constants ( TRUE, FALSE, NIL )
-
-### A Medium example
 
 This is a medium.s ( A Sweet file )
 *medium.s*
