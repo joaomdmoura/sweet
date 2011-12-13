@@ -67,7 +67,7 @@ sweet basic.s
 It becomes
 *basic.html*
 
-```
+``` html
 <html>
 	<head>
 		<title>
