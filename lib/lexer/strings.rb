@@ -10,7 +10,12 @@ class Strings
 			n_string = n_string.gsub(/\n/, "<br />")
 			get_tabs = n_string.scan(/((\t)+)/)
 			get_tabs.each do |line|
-				n_string = n_string.sub(/(\t)+/, "#{ '&nbsp;&nbsp;' * (line[0].count("\t") - original_tabs) }")
+				actual_tab = line[0].count("\t")
+				if actual_tab <= original_tabs
+					n_string = n_string.sub(/(\t)+/, "#{ '&nbsp;&nbsp;' * actual_tab }")
+				else
+					n_string = n_string.sub(/(\t)+/, "#{ '&nbsp;&nbsp;' * (actual_tab - original_tabs) }")
+				end
 			end
 			new_string = "print(#{n_string})"
 			code = code.gsub(string[0], new_string)
