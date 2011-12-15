@@ -1,0 +1,122 @@
+body {
+	background: #f6f6f6;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:600;
+	color:#505050;
+}
+#content {
+	width: 550px;
+	margin: auto;
+	display: block;
+	position: relative;
+}
+#header {
+	display: block;
+	margin-top: 20px;
+	background: url(/assets/images/separator.png) no-repeat left bottom;
+	height: 100px;
+}
+#description {
+	font-size:14px;
+}
+.colored_strong {
+	color:#f19c28;
+	font-weight: bold;
+}
+.strong {
+	font-weight: bold;
+}
+.colored {
+	color:#f19c28;	
+}
+
+#hard_usage .sweet {
+	background-color: #fff;
+	display:block;
+	width:435;
+	font-family: 'Courier', sans-serif;
+	font-size:13px;
+	border: 2.5px #e0e0e0 solid;
+	padding: 5px;
+	font-weight:normal;
+}
+
+#example_basic .sweet {
+	background-color: #fff;
+	display:block;
+	width:312px;
+	height:140px;
+	font-family: 'Courier', sans-serif;
+	font-size:13px;
+	border: 2.5px #e0e0e0 solid;
+	padding: 5px;
+	font-weight:normal;
+}
+
+#example_basic .html {
+	background-color: #fff;
+	display:block;
+	width:312px;
+	height:228px;
+	font-family: 'Courier', sans-serif;
+	font-size:13px;
+	border: 2.5px #e0e0e0 solid;
+	padding: 5px;
+	position: relative;
+	left: 223px;
+	top: 20px;
+	font-weight:normal;
+}
+
+#comparison .sweet, #comparison .html, #comparison .coffeekup, #comparison .jade {
+	background-color: #fff;
+	display:block;
+	font-family: 'Courier', sans-serif;
+	font-size:13px;
+	border: 2.5px #e0e0e0 solid;
+	padding: 5px;
+	margin-top:5px;
+	font-weight:normal;
+	width:312px;
+}
+
+.sweet, .html, .coffeekup, .jade {
+	background-color: #fff;
+	display:block;
+	font-family: 'Courier', sans-serif;
+	font-size:13px;
+	border: 2.5px #e0e0e0 solid;
+	padding: 5px;
+	margin-top:5px;
+	font-weight:normal;
+}
+.block {
+	margin-top: 10px;
+}
+.tags {
+	color:#000080;
+}
+
+#arrow {
+	background: url('/assets/images/arrow.png');
+	width: 159px;
+	height:110px;
+	position: absolute;
+	top:265px;
+	right:45px;
+}
+
+.title {
+	font-weight:bold;
+	font-size:24px;
+}
+
+.subtitle {
+	font-weight:bold;
+	font-size:18px;
+}
+
+
+#features_list {
+	font-size:13px;
+}
