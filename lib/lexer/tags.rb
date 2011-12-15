@@ -92,6 +92,7 @@ class Tags
 				code = code.gsub(_code_block, code_block)
 			end
 		end
+		code = strings.fix_atr( code, indent )
 		return code
 	end
 
