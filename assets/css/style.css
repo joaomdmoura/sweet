@@ -13,7 +13,7 @@ body {
 #header {
 	display: block;
 	margin-top: 20px;
-	background: url(/assets/images/separator.png) no-repeat left bottom;
+	background: url('http://joaomdmoura.github.com/sweet/assets/images/separator.png') no-repeat left bottom;
 	height: 100px;
 }
 #description {
@@ -98,7 +98,7 @@ body {
 }
 
 #arrow {
-	background: url('/assets/images/arrow.png');
+	background: url('http://joaomdmoura.github.com/sweet/assets/images/arrow.png');
 	width: 159px;
 	height:110px;
 	position: absolute;
