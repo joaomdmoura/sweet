@@ -13,5 +13,5 @@ Gem::Specification.new do |s|
   s.authors     = ["João Moura"]
   s.email       = 'joaomdmoura@gmail.com'
   s.files       = ["lib/sweet.rb", "lib/interpreter.rb", "lib/lexer.rb", "lib/nodes.rb", "lib/parser.rb", "lib/runtime.rb", "lib/lexer/core.rb", "lib/lexer/strings.rb", "lib/lexer/tags.rb", "lib/runtime/bootstrap.rb", "lib/runtime/class.rb", "lib/runtime/context.rb", "lib/runtime/method.rb", "lib/runtime/object.rb"]
-  s.homepage    = 'https://github.com/joaomdmoura/sweet'
+  s.homepage    = 'http://joaomdmoura.github.com/sweet/'
 end
