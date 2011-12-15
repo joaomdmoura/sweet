@@ -3,12 +3,12 @@ html
 		title
 			"A Sweet Language"
 		link href=http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700,600 rel=stylesheet type=text/css
-		link rel=stylesheet href=/assets/css/style.css
+		link rel=stylesheet href=http://joaomdmoura.github.com/sweet/assets/css/style.css
 	body
 		div #content
 			div #header
 				div #logo
-					img src=/assets/images/logo.png
+					img src=http://joaomdmoura.github.com/sweet/assets/images/logo.png
 			div .block #description
 				span .colored_strong
 					"Sweet"
