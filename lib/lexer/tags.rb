@@ -72,7 +72,7 @@ class Tags
 			end
 		end
 		@@tags.each do |tag|
-			general = code.scan(/(^(#{tag}(()$| )([ #.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
+			general = code.scan(/(^(#{tag}(()$| )([ :\/\?\+#.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
 			general.map! {|x| x[0]}
 			general.each_with_index do |block, index|
 				_code_block = block
