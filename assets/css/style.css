@@ -3,6 +3,8 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight:600;
 	color:#505050;
+	margin:0px;
+	padding:0px;
 }
 #content {
 	width: 550px;
@@ -95,6 +97,13 @@ body {
 }
 .tags {
 	color:#000080;
+}
+
+.github {
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	border: 0;
 }
 
 #arrow {
