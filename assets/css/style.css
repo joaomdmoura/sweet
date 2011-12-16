@@ -116,6 +116,12 @@ body {
 	font-size:18px;
 }
 
+.subtitle_colored {
+	font-weight:bold;
+	font-size:18px;
+	color:#f19c28;
+}
+
 
 #features_list {
 	font-size:13px;
