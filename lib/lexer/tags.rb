@@ -57,8 +57,7 @@ class Tags
 
 	def implement_tag(code, indent=1)
 		new_code = []
-		strings = Strings.new
-		code = strings.convert_string( code, indent )
+		@strings = Strings.new
 		@@inline_tags.each do |tag|
 			general = code.scan(/(^(\t)+?(#{tag}(()$| )([ #.=_\-a-zA-Z0-9:\/\?\+,]+)?))/)
 			general.map! {|x| x[0]}
@@ -89,10 +88,11 @@ class Tags
 				end
 				atr = code_block.scan(/([a-zA-Z0-9_-]+=)([\.\/:a-zA-Z0-9_-]+)/)
 				code_block = convert_tag( code_block , index, indent, tag, atr)
+				code_block = @strings.convert_string( code_block, indent )
 				code = code.gsub(_code_block, code_block)
 			end
 		end
-		code = strings.fix_atr( code, indent )
+		code = @strings.fix_atr( code, indent )
 		return code
 	end
 
