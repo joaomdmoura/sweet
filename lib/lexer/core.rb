@@ -19,7 +19,6 @@ class Lexer
 
 		code = treat(code)
 
-
     # Current character position we're parsing
     i = 0
     

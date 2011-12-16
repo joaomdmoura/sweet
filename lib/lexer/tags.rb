@@ -41,11 +41,16 @@ class Tags
 		atr.map {|x| x[0] + "'#{x[1]}'" }
 	end
 
-	def adding_attributes(code, tag)
+	def adding_attributes(code, tag, inline=false)
 		_attr = [ [ "id", "#" ], [ "class", "\\." ] ]
 		_attr.each do |a|
-			orig = code.scan(/^#{tag}([.a-zA-Z0-9=-_ ]+)? (#{a[1]}([a-zA-Z0-9_\-]+))/)
-			orig.map! {|x| [x[1], x[2]] }
+			if inline
+				orig = code.scan(/^(\t)+?#{tag}([.a-zA-Z0-9=-_ ]+)? (#{a[1]}([a-zA-Z0-9_\-]+))/)
+				orig.map! {|x| [x[2], x[3]] }
+			else
+				orig = code.scan(/^#{tag}([.a-zA-Z0-9=-_ ]+)? (#{a[1]}([a-zA-Z0-9_\-]+))/)
+				orig.map! {|x| [x[1], x[2]] }
+			end
 			orig.uniq!
 			orig.each do |_old|
 				_new = "#{a[0]}=#{_old[1]}"
@@ -64,21 +69,22 @@ class Tags
 			general.each_with_index do |block, index|
 				new_indent = block.scan(/((\t)+)[^\t]/)[0][0].count("\t") + 1
 				_code_block = block
-				code_block = adding_attributes(block, tag)
+				code_block = adding_attributes(block, tag, true)
 				atr = code_block.scan(/([a-zA-Z0-9_-]+=)'?"?([\.\/:a-zA-Z0-9_-]+)'?"?/)		
 				code_block = convert_tag( code_block , index, new_indent, tag, atr, true)
 				code = code.gsub(_code_block, code_block)
 			end
 		end
 		@@tags.each do |tag|
-			general = code.scan(/(^(#{tag}(()$| )([ :\/\?\+#.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
+			general = code.scan(/(^(#{tag}(()$| )([ :\/\?\+#.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/m)
 			general.map! {|x| x[0]}
 			general.each_with_index do |block, index|
 				_code_block = block
 				code_block = adding_attributes(block, tag)
+				code_block = @strings.convert_string( code_block, indent )
 				@@tags.each do |r_tag|
-					if !code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )([a-zA-Z0-9= \t_\-#.\\'\/]+)?((\n\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m).empty?
-						r_code = code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )([a-zA-Z0-9= \t_\-#.\\'\/]+)?((\n\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m)
+					if !code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )((\n)+?[a-zA-Z0-9= \t_\-#.\\'\/]+)?(((\n)+?\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m).empty?
+						r_code = code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )((\n)+?[a-zA-Z0-9= \t_\-#.\\'\/]+)?(((\n)+?\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m)
 						r_code.each do |r|
 							new_indent = indent + 1
 							new_block = implement_tag(r[1], new_indent)
@@ -88,7 +94,6 @@ class Tags
 				end
 				atr = code_block.scan(/([a-zA-Z0-9_-]+=)([\.\/:a-zA-Z0-9_-]+)/)
 				code_block = convert_tag( code_block , index, indent, tag, atr)
-				code_block = @strings.convert_string( code_block, indent )
 				code = code.gsub(_code_block, code_block)
 			end
 		end
