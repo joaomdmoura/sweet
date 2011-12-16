@@ -224,8 +224,9 @@ Var1 = "
 				Welcome to Sweet
 			h2(class='subtitle')
 				Hope you enjoy it"
-				div .subtitle_colored
-					"Sweet"
+				div .subtitle
+					span .subtitle_colored
+						"Sweet"
 					div .sweet
 						"html
 							head
