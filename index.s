@@ -234,5 +234,5 @@ Var1 = "
 							body
 								h1 #title
 									'Welcome to Sweet'
-								h2 .subtitle
+								h2 #subtitle
 									'Hope you enjoy it'"
