@@ -64,10 +64,14 @@ class Tags
 		new_code = []
 		@strings = Strings.new
 		@@inline_tags.each do |tag|
-			general = code.scan(/(^(\t)+?(#{tag}(()$| )([ #.=_\-a-zA-Z0-9:\/\?\+,]+)?))/)
+			general = code.scan(/(^((\t)+)?(#{tag}(()$| )([ #.=_\-a-zA-Z0-9:\/\?\+,]+)?))/)
 			general.map! {|x| x[0]}
 			general.each_with_index do |block, index|
-				new_indent = block.scan(/((\t)+)[^\t]/)[0][0].count("\t") + 1
+				if new_indent = block.scan(/((\t)+)[^\t]/)[0]
+					new_indent = block.scan(/((\t)+)[^\t]/)[0][0].count("\t") + 1
+				else
+					new_indent = indent
+				end
 				_code_block = block
 				code_block = adding_attributes(block, tag, true)
 				atr = code_block.scan(/([a-zA-Z0-9_-]+=)'?"?([\.\/:a-zA-Z0-9_-]+)'?"?/)		

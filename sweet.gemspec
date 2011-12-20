@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'sweet-lang'
-  s.version     = '0.1.9'
+  s.version     = '0.2.2'
   s.executables << 'sweet'
   s.date        = '2011-12-13'
   s.summary     = "A Sweet language, that compiles for HTML"
@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
     before really right and compile it."
   s.authors     = ["João Moura"]
   s.email       = 'joaomdmoura@gmail.com'
-  s.files       = ["lib/sweet.rb", "lib/interpreter.rb", "lib/lexer.rb", "lib/nodes.rb", "lib/parser.rb", "lib/runtime.rb", "lib/lexer/core.rb", "lib/lexer/strings.rb", "lib/lexer/tags.rb", "lib/runtime/bootstrap.rb", "lib/runtime/class.rb", "lib/runtime/context.rb", "lib/runtime/method.rb", "lib/runtime/object.rb"]
+  s.files       = ["lib/sweet.rb", "lib/interpreter.rb", "lib/lexer.rb", "lib/nodes.rb", "lib/parser.rb", "lib/runtime.rb", "lib/lexer/core.rb", "lib/lexer/strings.rb", "lib/lexer/tags.rb", "lib/runtime/bootstrap.rb", "lib/runtime/class.rb", "lib/runtime/context.rb", "lib/runtime/method.rb", "lib/runtime/object.rb", "lib/trollop.rb", "lib/filesystemwatcher.rb", "lib/servicestate.rb"]
   s.homepage    = 'http://joaomdmoura.github.com/sweet/'
 end
