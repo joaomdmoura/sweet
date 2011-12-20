@@ -35,15 +35,25 @@ $ gem install sweet-lang
 
 Usage
 ------------
+**For help**
+```
+sweet -h
+```
 
 ```
-sweet [FILENAME].s
+sweet -w ./
 ```
 
 or
 
 ```
-sweet
+sweet -c [FILENAME].s
+```
+
+or
+
+```
+sweet - o
 ```
 *for SIC ( Sweet Interactive Console )*
 
