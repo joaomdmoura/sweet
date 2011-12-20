@@ -1,5 +1,5 @@
 ![Alt text](http://joaomdmoura.com/sweet/sweet.jpg "A Sweet Language")
-# Sweet (current version - 0.1.9)
+# Sweet (current version - 0.2.2)
 A **Sweet** Language, that compiles for HTML.
 
 Description
@@ -79,7 +79,7 @@ html
 When we compile it
 
 ```
-sweet basic.s
+sweet -c basic.s
 ```
 
 It becomes
@@ -148,7 +148,7 @@ html
 When we compile it
 
 ```
-sweet medium.s
+sweet -c medium.s
 ```
 
 It becomes
@@ -227,7 +227,7 @@ html
 When we compile it
 
 ```
-sweet hard.s
+sweet -c hard.s
 ```
 
 It becomes
