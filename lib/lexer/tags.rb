@@ -53,8 +53,8 @@ class Tags
 			end
 			orig.uniq!
 			orig.each do |_old|
-				_new = "#{a[0]}=#{_old[1]}"
-				code = code.gsub(_old[0], _new)
+				_new = " #{a[0]}=#{_old[1]} "
+				code = code.gsub(/ #{_old[0]} /, _new)
 			end
 		end
 		return code
