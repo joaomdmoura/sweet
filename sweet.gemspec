@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'sweet-lang'
-  s.version     = '0.2.2'
+  s.version     = '0.4.6'
   s.executables << 'sweet'
-  s.date        = '2011-12-13'
+  s.date        = '2012-01-04'
   s.summary     = "A Sweet language, that compiles for HTML"
   s.description = "Sweet is a pre-compiled language based on Ruby and Python. 
     Sweet makes possible to use all the class, defs, conditionals, global and 
