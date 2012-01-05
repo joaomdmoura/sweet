@@ -80,15 +80,16 @@ class Tags
 			end
 		end
 		@@tags.each do |tag|
-			general = code.scan(/(^(#{tag}(()$| )([ :\/\?\+#.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/m)
-			general.map! {|x| x[0]}
+			general = code.scan(/(^(#{tag}(()$| )([ :\/\?\+#.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
+			general_old = general
+			general.map! {|x| x[1]}
+			general.uniq!
 			general.each_with_index do |block, index|
 				_code_block = block
 				code_block = adding_attributes(block, tag)
-				code_block = @strings.convert_string( code_block, indent )
 				@@tags.each do |r_tag|
-					if !code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )((\n)+?[a-zA-Z0-9= \t_\-#.\\'\/]+)?(((\n)+?\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m).empty?
-						r_code = code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )((\n)+?[a-zA-Z0-9= \t_\-#.\\'\/]+)?(((\n)+?\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m)
+					if !code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )(((\n)?[a-zA-Z0-9= _\-#.\\'\/\"]+)+)?(((\n)+?\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m).empty?
+						r_code = code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )(((\n)?[a-zA-Z0-9= _\-#.\\'\/\"]+)+)?(((\n)+?\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m)
 						r_code.each do |r|
 							new_indent = indent + 1
 							new_block = implement_tag(r[1], new_indent)
@@ -97,8 +98,11 @@ class Tags
 					end
 				end
 				atr = code_block.scan(/([a-zA-Z0-9_-]+=)([\.\/:a-zA-Z0-9_-]+)/)
+				code_block = @strings.convert_string( code_block, indent )
 				code_block = convert_tag( code_block , index, indent, tag, atr)
-				code = code.gsub(_code_block, code_block)
+				_code_block = _code_block.gsub("(", '\(')
+				_code_block = _code_block.gsub(")", '\)')
+				code = code.gsub(/^#{_code_block}$/, code_block)
 			end
 		end
 		code = @strings.fix_atr( code, indent )
