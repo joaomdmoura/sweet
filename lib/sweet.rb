@@ -10,7 +10,7 @@ class Sweet
   def parsing_options
 
     opts = Trollop::options do
-      version "Sweet 0.4.6 (c) 2012 Joao Moura a.k.a D3TR1"
+      version "Sweet 0.4.7 (c) 2012 Joao Moura a.k.a D3TR1"
       banner <<-EOS
       A Sweet Language, that compiles for HTML.
 

@@ -6,12 +6,12 @@ Given /^select the (.*) from (.*) folder$/ do |file, folder|
 			$sweet_code << "#{line}"
 		end
 	end
-	File.open("tests/test.s", 'w') do |f|
-  	f.puts $sweet_code.join
-	end
 end
 
 When /^I compile it$/ do
+	File.open("tests/test.s", 'w') do |f|
+  	f.puts $sweet_code
+	end
 	cmd = IO.popen("sweet -c tests/test.s")
 	cmd = cmd.readlines
 	puts cmd.join

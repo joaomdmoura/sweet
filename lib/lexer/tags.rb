@@ -53,8 +53,8 @@ class Tags
 			end
 			orig.uniq!
 			orig.each do |_old|
-				_new = " #{a[0]}=#{_old[1]} "
-				code = code.gsub(/ #{_old[0]} /, _new)
+				_new = " #{a[0]}=#{_old[1]}"
+				code = code.gsub(/ #{_old[0]}/, _new)
 			end
 		end
 		return code
@@ -80,7 +80,7 @@ class Tags
 			end
 		end
 		@@tags.each do |tag|
-			general = code.scan(/(^(#{tag}(()$| )([ :\/\?\+#.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
+			general = code.scan(/(^(#{tag}(()$| )([ :;\/\?\+#.=_\-a-zA-Z0-9]+)?((\n\t.*)+)?).*)/)
 			general_old = general
 			general.map! {|x| x[1]}
 			general.uniq!
@@ -97,12 +97,12 @@ class Tags
 						end
 					end
 				end
-				atr = code_block.scan(/([a-zA-Z0-9_-]+=)([\.\/:a-zA-Z0-9_-]+)/)
+				atr = code_block.scan(/([a-zA-Z0-9_-]+=)([\.\/:;#a-zA-Z0-9_-]+)/)
 				code_block = @strings.convert_string( code_block, indent )
 				code_block = convert_tag( code_block , index, indent, tag, atr)
 				_code_block = _code_block.gsub("(", '\(')
 				_code_block = _code_block.gsub(")", '\)')
-				code = code.gsub(/^#{_code_block}$/, code_block)
+				code = code.gsub(/^#{_code_block}$/m, code_block)
 			end
 		end
 		code = @strings.fix_atr( code, indent )

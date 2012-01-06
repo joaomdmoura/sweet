@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'sweet-lang'
-  s.version     = '0.4.6'
+  s.version     = '0.4.7'
   s.executables << 'sweet'
   s.date        = '2012-01-04'
   s.summary     = "A Sweet language, that compiles for HTML"
