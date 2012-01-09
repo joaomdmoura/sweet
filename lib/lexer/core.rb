@@ -3,7 +3,8 @@ class Lexer
 
   def treat(code)
     tags = Tags.new
-    code = tags.implement_tag(code)
+    files = Files.new
+    code = tags.implement_tag(files.includes(code))
   end
   
   def tokenize(code)
@@ -14,8 +15,6 @@ class Lexer
     code = code.gsub( /[ ]+\n/, "\n" )
 		code = code.gsub( "\n ", "\n\t" )
 		code = code.gsub( /^\s*$/m, '' )
-    
-    tags = Tags.new
 
 		code = treat(code)
 

@@ -49,7 +49,7 @@ class Sweet
 end
 
 def compile_file(file)
-
+  $path = file.split(/[ =-_a-zA-Z0-9]+\.s/)[0]
   interpreter = Interpreter.new
   @filename = file.split(".")[0]
   File.new("#{@filename}.html", "w")
