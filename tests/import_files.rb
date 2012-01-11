@@ -1,4 +1,4 @@
-Given /^write a random sweet code and include the (.*) example$/ do |file|
+Given /^write a random sweet code and include the examples$/ do
  $sweet_code = <<-EOS
 html
 	head
@@ -7,9 +7,9 @@ html
 	body #id2 #id2_ id=id2_
 		<~ ../examples/basic/basic.s
 		div #id3 #id3_ id=id3_
-			<~ ../examples/basic/basic.s
+			<~ ../examples/medium/medium.s
 			div #id4 #id4_ id=id4_
-				<~ ../examples/basic/basic.s
+				<~ ../examples/hard/hard.s
 EOS
 
 	$compiled_code = <<-EOS
@@ -39,7 +39,7 @@ Hope you enjoy it
 <html >
 <head >
 <title >
-A Sweet basic demostration
+A Sweet medium demostration
 </title>
 </head>
 <body >
@@ -47,15 +47,19 @@ A Sweet basic demostration
 Welcome to Sweet
 </h1>
 <h2 class='subtitle'>
-Hope you enjoy it
+Hope you keep enjoing it
 </h2>
+<div >
+It isn't getting hard, is getting sweet!
+
+</div>
 </body>
 </html>
 <div id='id4' id='id4_' id='id4_'>
 <html >
 <head >
 <title >
-A Sweet basic demostration
+A Sweet hard demostration
 </title>
 </head>
 <body >
@@ -63,8 +67,28 @@ A Sweet basic demostration
 Welcome to Sweet
 </h1>
 <h2 class='subtitle'>
-Hope you enjoy it
+Hope you keep enjoing it
 </h2>
+<div id='user'>
+<ul id='content'>
+<li class='name'>
+Jonh Doe
+</li>
+<li class='status'>
+Logged
+</li>
+</ul>
+</div>
+<div id='logout'>
+<a href='logout'>
+Do you wanna logout
+</a>
+</div>
+<div id='login'>
+<form action='login' id='form'>
+<input type='text' id='email' />
+</form>
+</div>
 </body>
 </html>
 </div>

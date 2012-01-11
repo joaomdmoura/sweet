@@ -3,8 +3,9 @@ class Lexer
 
   def treat(code)
     tags = Tags.new
+    strings = Strings.new
     files = Files.new
-    code = tags.implement_tag(files.includes(code))
+    code = strings.rollingback_strings(tags.implement_tag(files.includes(code)))
   end
   
   def tokenize(code)
@@ -15,9 +16,9 @@ class Lexer
     code = code.gsub( /[ ]+\n/, "\n" )
 		code = code.gsub( "\n ", "\n\t" )
 		code = code.gsub( /^\s*$/m, '' )
+    code = code.gsub( /^((\t)+)?\n/, '' )
 
 		code = treat(code)
-
     # Current character position we're parsing
     i = 0
     
@@ -65,37 +66,38 @@ class Lexer
       
      	# Here's the indentation magic!
 			elsif indent = chunk[/\A\n(\t+)/m, 1]
-				# Create a new block we expect the indent level to go up.
-				if indent.size < current_indent
-					indent_stack.pop
-					current_indent = indent_stack.last || 0
-					tokens << [:DEDENT, indent.size]
-					tokens << [:NEWLINE, "\n"]
-								
-				elsif indent.size == current_indent
-					tokens << [:NEWLINE, "\n"]
-					
-				else
-					# Adjust the current indentation level.
-					current_indent = indent.size
-					indent_stack.push(current_indent)
-					tokens << [:INDENT, indent.size]
-				end
-
+        # Create a new block we expect the indent level to go up.
+        if indent.size < current_indent
+          while current_indent > indent.size
+            indent_stack.pop
+            current_indent = indent_stack.last || 0
+            tokens << [:DEDENT, indent.size]
+            tokens << [:NEWLINE, "\n"]
+          end
+                
+        elsif indent.size == current_indent
+          tokens << [:NEWLINE, "\n"]
+          
+        else
+          # Adjust the current indentation level.
+          current_indent = indent.size
+          indent_stack << current_indent
+          tokens << [:INDENT, indent.size]
+        end
 				i += indent.size + 1
-
 			elsif indent = chunk[/\A\n(	*)/m, 1]
 				if indent.size == current_indent
 					# Nothing to do, we're still in the same block
 					tokens << [:NEWLINE, "\n"]
 				elsif indent.size < current_indent
-					indent_stack.pop
-					current_indent = indent_stack.last || 0
-					tokens << [:DEDENT, indent.size]
-					tokens << [:NEWLINE, "\n"]
+          while current_indent > indent.size
+					 indent_stack.pop
+					 current_indent = indent_stack.last || 0
+					 tokens << [:DEDENT, indent.size]
+					 tokens << [:NEWLINE, "\n"]
+          end
 				end
 				i += indent.size + 1
-      
       # Match long operators such as ||, &&, ==, !=, <= and >=.
       # One character long operators are matched by the catch all `else` at the bottom.
       elsif operator = chunk[/\A(\|\||&&|==|!=|<=|>=)/, 1]
@@ -121,7 +123,6 @@ class Lexer
     while indent = indent_stack.pop
       tokens << [:DEDENT, indent_stack.last || 0]
     end
-    
     tokens
   end
 end

@@ -6,7 +6,7 @@ class Files
 		includes.each do |include_|
 			result = ""
 			file_ = include_[3].gsub(" ", "")
-			indent = include_[1].count("\t") 
+			indent = (include_[1].nil?) ? 0 : include_[1].count("\t") 
 			indent = "\t" * indent
 			file_ = File.new("#{$path}#{file_}", "r")
 			while (line = file_.gets)
