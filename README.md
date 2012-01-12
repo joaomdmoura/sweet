@@ -15,6 +15,8 @@ Features
 ------------
 * Clear and simple syntax
 * Defining blocks using indentation
+* Include of external files
+* Watch folders with sweet files
 * Support to Class, Def, Conditionals, Constants and Variables
  * Just If conditional for now ( whitout else )
  * Local and Global Variables ( down / uppercase eg. lol / Lol )
@@ -40,22 +42,20 @@ Usage
 sweet -h
 ```
 
+**For watch a folder**
 ```
 sweet -w ./
 ```
 
-or
-
+**For compile a file**
 ```
 sweet -c [FILENAME].s
 ```
 
-or
-
+**For SIC ( Sweet Interactive Console )**
 ```
 sweet - o
 ```
-*for SIC ( Sweet Interactive Console )*
 
 ##Examples
 
@@ -68,7 +68,7 @@ So just a few tips:
  * Attributes are defined without ' " ' ( eg. type=password )
  * You can use shortcuts to "id" and "class" attributes ( eg. #myid / .myclass ) 
 * You blocks will be defined by indentation, so start to make a clean code.
-* String must have '"'.
+* String must have ' " '.
 * There is no more inline content, everything is indented.
 
 This is a basic.s ( A Sweet file )
@@ -127,7 +127,7 @@ then we bring to **Sweet** a little bit of server-side development to open your 
 * Constants ( TRUE, FALSE, NIL )
 
 **Remember**
-* A variable cant have a name of a tag 
+* A variable can't have a name of a tag 
 
 This is a medium.s ( A Sweet file )
 *medium.s*
