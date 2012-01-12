@@ -38,21 +38,25 @@ $ gem install sweet-lang
 Usage
 ------------
 **For help**
+
 ```
 sweet -h
 ```
 
 **For watch a folder**
+
 ```
 sweet -w ./
 ```
 
 **For compile a file**
+
 ```
 sweet -c [FILENAME].s
 ```
 
 **For SIC ( Sweet Interactive Console )**
+
 ```
 sweet - o
 ```
