@@ -68,9 +68,15 @@ but there is details that should be showed.
 
 ### Including sweet externals files
 
+In sweet you can include external files to be compile in anywhere you want to in your code, there is page with an 
+example in wiki:https://github.com/joaomdmoura/sweet/wiki/Include-of-external-sweet-files/
+
 ```
 <~ [PATH/TO/FILE].s
 ```
+
+**The include feature also support logic, so you can have a sweet file with all your classes and def's, and then, 
+include it on your sweet major file.**
 
 ##Examples
 
