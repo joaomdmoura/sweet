@@ -63,7 +63,7 @@ sweet - o
 
 ##Syntax
 
-There is a lot to discuss and show about sweet syntax, ithink the best for learn it is take a look at the examples,
+There is a lot to discuss and show about sweet syntax, I think the best for learn it, is take a look at the examples,
 but there is details that should be showed.
 
 ### Including sweet externals files
