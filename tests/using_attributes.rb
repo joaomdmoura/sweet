@@ -11,8 +11,8 @@ html
 EOS
 
 	$compiled_code = <<-EOS
-<html >
-	<head >
+<html>
+	<head>
 		<title id='id1' id='id1_' id='id1_'>
 			title
 		</title>
@@ -41,8 +41,8 @@ html
 EOS
 
 	$compiled_code = <<-EOS
-<html >
-	<head >
+<html>
+	<head>
 		<title class='class1' class='class1_' class='class1_'>
 			title
 		</title>
@@ -70,8 +70,8 @@ html
 EOS
 
 	$compiled_code = <<-EOS
-<html >
-	<head >
+<html>
+	<head>
 		<title a='b_' class='class' c='d_-d'>
 			title
 		</title>

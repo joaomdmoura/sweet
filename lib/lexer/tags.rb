@@ -26,9 +26,9 @@ class Tags
 		end
 		attributes = convert_attr(atr).join(" ")
 		if inline
-			new_def = "#{p_tab}def tag_#{index}\n#{tab}print(\"<#{tag} #{attributes} />\")\n#{p_tab}tag_#{index}"
+			new_def = "#{p_tab}def tag_#{index}\n#{tab}print(\"<#{tag}#{(attributes.empty?) ? "" : " #{attributes}"}/>\")\n#{p_tab}tag_#{index}"
 		else
-			new_def = "def tag_#{index}\n#{tab}print(\"<#{tag} #{attributes}>\")"
+			new_def = "def tag_#{index}\n#{tab}print(\"<#{tag}#{(attributes.empty?) ? "" : " #{attributes}"}>\")"
 			content.each do |lol|
 				new_def += "\n" + lol[0]
 			end
