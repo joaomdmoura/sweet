@@ -30,7 +30,6 @@ Then /^the result should be equal the already compiled (.*) file from (.*) folde
 		original += line
 	end
 	File.delete("tests/test.html")
-	original = original.gsub("\t","")
 	$sweet_code = []
 	result.should == original
 end

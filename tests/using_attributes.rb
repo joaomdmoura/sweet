@@ -12,18 +12,18 @@ EOS
 
 	$compiled_code = <<-EOS
 <html >
-<head >
-<title id='id1' id='id1_' id='id1_'>
-title
-</title>
-</head>
-<body id='id2' id='id2_' id='id2_'>
-<div id='id3' id='id3_' id='id3_'>
-<div id='id4' id='id4_' id='id4_'>
-content
-</div>
-</div>
-</body>
+	<head >
+		<title id='id1' id='id1_' id='id1_'>
+			title
+		</title>
+	</head>
+	<body id='id2' id='id2_' id='id2_'>
+		<div id='id3' id='id3_' id='id3_'>
+			<div id='id4' id='id4_' id='id4_'>
+				content
+			</div>
+		</div>
+	</body>
 </html>
 EOS
 end
@@ -42,18 +42,18 @@ EOS
 
 	$compiled_code = <<-EOS
 <html >
-<head >
-<title class='class1' class='class1_' class='class1_'>
-title
-</title>
-</head>
-<body class='class2_' class='class2_'>
-<div class='class3_' class='class3_'>
-<div class='class4_' class='class4_'>
-content
-</div>
-</div>
-</body>
+	<head >
+		<title class='class1' class='class1_' class='class1_'>
+			title
+		</title>
+	</head>
+	<body class='class2_' class='class2_'>
+		<div class='class3_' class='class3_'>
+			<div class='class4_' class='class4_'>
+				content
+			</div>
+		</div>
+	</body>
 </html>
 EOS
 end
@@ -71,16 +71,16 @@ EOS
 
 	$compiled_code = <<-EOS
 <html >
-<head >
-<title a='b_' class='class' c='d_-d'>
-title
-</title>
-</head>
-<body id='id' e='f'>
-<div style='background-color:#000;border:1;'>
-content
-</div>
-</body>
+	<head >
+		<title a='b_' class='class' c='d_-d'>
+			title
+		</title>
+	</head>
+	<body id='id' e='f'>
+		<div style='background-color:#000;border:1;'>
+			content
+		</div>
+	</body>
 </html>
 EOS
 end

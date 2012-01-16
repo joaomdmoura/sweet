@@ -1,5 +1,5 @@
 ![Alt text](http://joaomdmoura.com/sweet/sweet.jpg "A Sweet Language")
-# Sweet (current version - 0.3.7)
+# Sweet (current version - 0.3.8)
 A **Sweet** Language, that compiles for HTML.
 
 Description
