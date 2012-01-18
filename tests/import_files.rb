@@ -85,7 +85,7 @@ EOS
 						</div>
 						<div id='login'>
 							<form action='login' id='form'>
-								<input type='text' id='email' />
+								<input type='text' id='email'/>
 							</form>
 						</div>
 					</body>

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Tags
 
 	@@inline_tags = [ "area", "img", "param", "input", "option", "base", "link", 
@@ -88,9 +89,10 @@ class Tags
 				_code_block = block
 				code_block = adding_attributes(block, tag)
 				code_block = @strings.treat_def(code_block)
-				@@tags.each do |r_tag|		
-					if !code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )(((\n)?[a-zA-Z0-9= _\-#.\\'\/\"]+)+)?(((\n)+?\1{#{indent+1},})?(["#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m).empty?
-						r_code = code_block.scan(/^(\t){#{indent}}(#{r_tag}(()$| )(((\n)?[a-zA-Z0-9= _\-#.\\'\/\"]+)+)?(((\n)+?\1{#{indent+1},})?(["\!\?#a= ()a-zA-Z0-9_.,\--\\'\/&]+)?)+)/m)
+				@@tags.each do |r_tag|
+					regexp = /^(\t){#{indent}}(#{r_tag}(()$| )(((\n)?[a-zA-Z0-9= _\-#.\\'\/\"]+)+)?(((\n)+?\1{#{indent+1},})?(["\!\?#a= ()a-zA-Z0-9_.,\--\\'\/&éúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄç]+)?)+)/m
+					if !code_block.scan(regexp).empty?
+						r_code = code_block.scan(regexp)
 						r_code.each do |r|
 							new_indent = indent + 1
 							new_block = implement_tag(r[1], new_indent)
