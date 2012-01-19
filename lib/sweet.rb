@@ -11,7 +11,7 @@ class Sweet
   def parsing_options
 
     opts = Trollop::options do
-      version "Sweet 0.4.0 (c) 2012 Joao Moura a.k.a D3TR1"
+      version "Sweet 0.4.1 (c) 2012 Joao Moura a.k.a D3TR1"
       banner <<-EOS
       A Sweet Language, that compiles for HTML.
 
@@ -54,13 +54,12 @@ def compile_file(file)
   $path = file.split(/[ =-_a-zA-Z0-9]+\.s/)[0]
   interpreter = Interpreter.new
   @filename = file.split(".")[0]
-  File.new("#{@filename}.html", "w")
   interpreter.eval File.read(file)
-  File.open("#{@filename}.html", 'a') do |f|
+  File.open("#{@filename}.html", 'w+') do |f|
     f.puts treat.indent( @code )
   end
   puts "Sweet code compiled!"
-
+  @code = []
 end
 
 sweet = Sweet.new
