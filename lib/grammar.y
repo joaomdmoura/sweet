@@ -1,7 +1,8 @@
 class Parser
 
 # Declare tokens produced by the lexer
-token IF ELSE
+token IF
+token ELSE
 token DEF
 token CLASS
 token NEWLINE
@@ -11,9 +12,9 @@ token TRUE FALSE NIL
 token IDENTIFIER
 token CONSTANT
 token INDENT DEDENT
+token WHILE
 
 # Precedence table
-# Based on http://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator_precedence
 prechigh
   left  '.'
   right '!'
@@ -64,6 +65,7 @@ rule
   | Assign
   | Def
   | Class
+  | While
   | If
   | '(' Expression ')'    { result = val[1] }
   ;
@@ -116,6 +118,7 @@ rule
   | Expression '-' Expression     { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '*' Expression     { result = CallNode.new(val[0], val[1], [val[2]]) }
   | Expression '/' Expression     { result = CallNode.new(val[0], val[1], [val[2]]) }
+  | '!' Expression                { result = CallNode.new(val[1],val[0],[]) }
   ;
   
   Constant:
@@ -148,8 +151,19 @@ rule
   
   # if block
   If:
-    IF Expression Block           { result = IfNode.new(val[1], val[2]) }
+    IF Expression Block Else     { result = IfNode.new(val[1], val[2], val[3]) }
   ;
+
+  # else block
+  Else:
+    NEWLINE ELSE Block           { result = val[2] }
+  | NEWLINE                      { result = NIL }
+  |                              { result = NIL }
+  ;
+
+  # while block
+  While:
+    WHILE Expression Block        { result = WhileNode.new(val[1], val[2]) }
   
   # A block of indented code. You see here that all the hard work was done by the
   # lexer.

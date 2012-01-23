@@ -134,7 +134,24 @@ class IfNode
   def eval(context)
     # We turn the condition node into a Ruby value to use Ruby's "if" control 
     # structure.
-    if condition.eval(context).ruby_value
+    if body_else.nil?
+      if condition.eval(context).ruby_value
+        body.eval(context)
+      end
+    else
+      if condition.eval(context).ruby_value
+        body.eval(context)
+      else
+        body_else.eval(context)
+      end
+    end
+  end
+end
+
+
+class WhileNode
+  def eval(context)
+    while condition.eval(context).ruby_value
       body.eval(context)
     end
   end

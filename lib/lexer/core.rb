@@ -1,5 +1,5 @@
 class Lexer
-  KEYWORDS = ["def", "class", "if", "true", "false", "nil"]
+  KEYWORDS = ["def", "class", "if", "else", "true", "false", "nil", "while"]
 
   def treat(code)
     tags = Tags.new
@@ -65,7 +65,7 @@ class Lexer
         i += string.size + 2
       
      	# Here's the indentation magic!
-			elsif indent = chunk[/\A\n(\t+)/m, 1]
+			elsif indent = chunk[/\A\n(\t*)/m, 1]
         # Create a new block we expect the indent level to go up.
         if indent.size < current_indent
           while current_indent > indent.size
