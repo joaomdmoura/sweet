@@ -45,8 +45,10 @@ class Strings
 	def fix_atr(code, indent)
 		strings = code.scan(/print\(.*\)/m)
 		strings.uniq!
-		n_string = strings[0].gsub("\\=", "=")
-		code = code.gsub(strings[0], n_string)
+		if !strings.empty?
+			n_string = strings[0].gsub("\\=", "=")
+			code = code.gsub(strings[0], n_string)
+		end
 		code
 	end
 

@@ -5,12 +5,16 @@ class Treat
 		@r_code = ""
 
 		code.each do |line|
-			if !line.scan( /<\/.*>/ ).empty?
-				level -= 1
-				add_line( line, level )
-			elsif !line.scan( /<[^\/]+>/ ).empty?
-				add_line( line, level )
-				level += 1
+			if !line.is_a?(Numeric)
+				if !line.scan( /<\/.*>/ ).empty?
+					level -= 1
+					add_line( line, level )
+				elsif !line.scan( /<[^\/]+>/ ).empty?
+					add_line( line, level )
+					level += 1
+				else
+					add_line( line, level )
+				end
 			else
 				add_line( line, level )
 			end
@@ -21,7 +25,7 @@ class Treat
 	end
 
 	def add_line ( line, level )
-		@r_code += "#{("\t" * level ) + line}\n"
+		@r_code += "#{("\t" * level ) + line.to_s}\n"
 	end
 
 end
