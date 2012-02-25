@@ -1,4 +1,4 @@
-![Alt text](http://joaomdmoura.com/sweet/sweet.jpg "A Sweet Language")
+![Alt text](http://joaomdmoura.github.com/sweet/assets/images/logo.png "A Sweet Language")
 # Sweet (current version - 0.4.6)
 A **Sweet** Language, that compiles for HTML.
 
