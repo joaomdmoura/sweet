@@ -1,4 +1,4 @@
-@code = []
+$code = []
 
 require "runtime/object"
 require "runtime/class"

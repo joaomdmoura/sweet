@@ -36,7 +36,7 @@ end
 # Print an object to the console.
 # eg.: print("hi there!")
 Runtime["Object"].runtime_methods["print"] = proc do |receiver, arguments|
-	@code << arguments.first.ruby_value
+	$code << arguments.first.ruby_value
   Runtime["nil"]
 end
 
