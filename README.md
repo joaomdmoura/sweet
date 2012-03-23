@@ -18,11 +18,11 @@ Features
 * Include of external files
 * Watch folders with sweet files
 * Support to Class, Def, Conditionals, Constants and Variables
- * Just If conditional for now ( whitout else )
+ * Just If conditional for now ( without else )
  * Local and Global Variables ( down / uppercase eg. lol / Lol )
  * Constants ( TRUE, FALSE, NIL )
 * SIC ( Sweet Interactive Console )
-* Automaticly return of the last value of Def
+* Automatically return of the last value of Def
 * Multiple scopes
 * A small and cool extension ".s"
 
